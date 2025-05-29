@@ -1,8 +1,6 @@
 using System;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.InputSystem.UI;
 namespace StateMachine
 {
     public abstract class StateManager<EState> : MonoBehaviour where EState : Enum
