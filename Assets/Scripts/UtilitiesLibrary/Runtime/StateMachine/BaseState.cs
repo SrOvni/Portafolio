@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace StateMachine
+namespace UtilitiesLibrary
 {
     public abstract class BaseState<EState> where EState : Enum
     {

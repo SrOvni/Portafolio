@@ -1,8 +1,8 @@
 {
-  "name": "com.reniergaytan.statemachine",
-  "version": "1.0.0",
-  "displayName": "State Machine",
-  "description": "This is an example package",
+  "name": "com.reniergaytan.utilitiespackage",
+  "version": "1.0.1",
+  "displayName": "UtilitiesPackage",
+  "description": "Utility library with state machine logic and a timer",
   "unity": "2023.1",
   "author": {
     "name": "Renier Gaytan",

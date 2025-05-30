@@ -1,6 +1,6 @@
 {
-    "name": "StateMachine",
-    "rootNamespace": "StateMachine",
+    "name": "UtilitiesLibrary",
+    "rootNamespace": "UtilitiesLibrary",
     "references": [],
     "includePlatforms": [],
     "excludePlatforms": [],
