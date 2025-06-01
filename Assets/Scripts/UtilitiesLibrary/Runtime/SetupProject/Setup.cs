@@ -1,5 +1,6 @@
 using UnityEditor;
 using static UnityEditor.AssetDatabase;
+using static UtilitiesLibrary.Setup.Folders;
 
 
 namespace UtilitiesLibrary.Setup
@@ -9,7 +10,13 @@ namespace UtilitiesLibrary.Setup
         [MenuItem("Tools/Setup/Create Default Projects")]
         public static void CreateDefaultFolders()
         {
-            Folders.CreateDefault("", "Scripts", "Materials", "Prefabs", "ScriptableObjects");
+            CreateDefault("Project", "Animations", "Art", "Audio", "Editor", "Level", "Particles", "Scenes", "Scripts", "Shaders");
+            Refresh();
+            CreateDefault("External", "");
+            Refresh();
+            CreateDefault("Project/Art", "Materials", "Models", "Textures", "UI");
+            Refresh();
+            CreateDefault("Project/Audio", "BGM", "SFX");
             Refresh();
         }
     }
