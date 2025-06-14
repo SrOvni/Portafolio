@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b076213075807114192687f69e4e77e6, type: 3}
+  m_Name: Waves Data
+  m_EditorClassIdentifier: 
+  Waves:
+  - WeakEnemies: 3
+    MidEnemies: 0
+    HeavyEnemies: 0
+  - WeakEnemies: 3
+    MidEnemies: 2
+    HeavyEnemies: 0
+  - WeakEnemies: 2
+    MidEnemies: 3
+    HeavyEnemies: 2
+  - WeakEnemies: 3
+    MidEnemies: 3
+    HeavyEnemies: 3

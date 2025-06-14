@@ -1,0 +1,50 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73af431bd91cab949b769b922d608450, type: 3}
+  m_Name: Audio Box
+  m_EditorClassIdentifier: 
+  Audios:
+  - ClipName: Main BGM
+    AudioClips:
+    - {fileID: 8300000, guid: 5dffb8687b11a05428b932199023e9b7, type: 3}
+    Volume: 0.5
+    Pitch: 1
+    Loop: 1
+    StartDelay: 0
+  - ClipName: Gun shot
+    AudioClips:
+    - {fileID: 8300000, guid: 56132c137075a824ea9693d32724a23a, type: 3}
+    Volume: 0.5
+    Pitch: 1
+    Loop: 0
+    StartDelay: 0
+  - ClipName: Laser Turret
+    AudioClips:
+    - {fileID: 8300000, guid: ad38965c02d3f2d4cbb6233fff47cc51, type: 3}
+    Volume: 50
+    Pitch: 1
+    Loop: 0
+    StartDelay: 0
+  - ClipName: BGM On
+    AudioClips:
+    - {fileID: 8300000, guid: 6557f5b54bcf976458d11bde9f858e37, type: 3}
+    Volume: 0.05
+    Pitch: 1
+    Loop: 1
+    StartDelay: 0
+  - ClipName: BGM Off
+    AudioClips:
+    - {fileID: 8300000, guid: 234386a6d790fd540b9c6abd273836f1, type: 3}
+    Volume: 0
+    Pitch: 1
+    Loop: 1
+    StartDelay: 0
