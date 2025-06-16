@@ -16,7 +16,9 @@ public class Health : MonoBehaviour
             set => _currentHealth = value;
         }
     #endregion
-    private void OnEnable() {
+    
+    private void OnEnable()
+    {
         _currentHealth = _initialHealth;
     }
     public void ReceiveDamage(int damageAmount)

@@ -6,7 +6,7 @@ namespace AdvancedController
     [RequireComponent(typeof(Rigidbody), typeof(CapsuleCollider))]
     public class PlayerMover : MonoBehaviour
     {
-        #region 
+        #region FIELDS 
         [Header("Collider settings")]
         [Range(0f, 1f)] [SerializeField] private float _stepHeightRatio = 0.2f;
 
@@ -46,8 +46,33 @@ namespace AdvancedController
         }
         public void CheckForGround()
         {
-            
+            if (currentLayer != gameObject.layer)
+            {
+                RecalculateSensorLayerMask();
+            }
+
+            currentGroundAdjustmentVelocoty = Vector3.zero;
+            sensor.CastLenght = isUsingExtendedSensorRange ? _baseSensorRange + _colliderHeight * tr.localScale.x * _stepHeightRatio : _baseSensorRange;
+            sensor.Cast();
+
+            isGrounded = sensor.HasDetectedHit();
+            if (!isGrounded) return;
+            float distance = sensor.GetDistance();
+            float upperLimit = _colliderHeight * tr.localPosition.x * (1f - _stepHeightRatio) * 0.5f;
+            float middle = upperLimit + _colliderHeight * tr.localScale.x * _stepHeightRatio;
+            float distanceToGo = middle - distance;
+
+            currentGroundAdjustmentVelocoty = tr.up * (distanceToGo / Time.fixedDeltaTime); 
         }
+
+        public bool IsGrounded() => isGrounded;
+        public Vector3 GetGroundNormal() => sensor.GetNormal();
+
+        public void SetVelocity(Vector3 velocity) => rb.linearVelocity = velocity + currentGroundAdjustmentVelocoty;
+
+        public void SetExtendedSensorRange(bool isExtended) => isUsingExtendedSensorRange = isExtended;
+
+
         private void Setup()
         {
             tr = transform;
@@ -100,7 +125,7 @@ namespace AdvancedController
             col.radius = _colliderThickness / 2f;
             col.center = _colliderOffset * _colliderHeight + new Vector3(0f, _stepHeightRatio * col.height / 2f, 0f);
 
-            if(col.radius / 2f < col.radius)
+            if(col.height / 2f < col.radius)
             {
                 col.radius = col.height /2f;
             }

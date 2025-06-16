@@ -3,14 +3,13 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    [SerializeField] CinemachineCamera _virtualCamera;
+    // [SerializeField] CinemachineCamera _virtualCamera;
 
-    private CinemachineBasicMultiChannelPerlin _perlinNoise;
+    [SerializeField] private CinemachineBasicMultiChannelPerlin _perlinNoise;
 
     [SerializeField] private float _noiseAmplitud;
     [SerializeField] private float _noiseFrequency;
     private void Start() {
-        _perlinNoise = _virtualCamera.GetComponent<CinemachineBasicMultiChannelPerlin>();
         _perlinNoise.AmplitudeGain = 0;
         _perlinNoise.FrequencyGain = 0;
     }
