@@ -1,25 +1,30 @@
+// using PlayerController;
+
+
 namespace FiniteStateMachine
 {
     public abstract class BaseState : IState
     {
+         
+
         public virtual void FixedUpdate()
         {
-            throw new System.NotImplementedException();
+            //noop
         }
 
         public virtual void OnEnter()
         {
-            throw new System.NotImplementedException();
+            //noop
         }
 
         public virtual void OnExit()
         {
-            throw new System.NotImplementedException();
+            //noop
         }
 
         public virtual void Update()
         {
-            throw new System.NotImplementedException();
+            //noop
         }
     }
 }

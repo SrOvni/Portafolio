@@ -1,5 +1,4 @@
 using System;
-using UtilitiesLibrary;
 namespace FiniteStateMachine
 {
     public class FuncPredicate : IPredicate
@@ -10,13 +9,5 @@ namespace FiniteStateMachine
             _func = func;
         }
         public bool Evaluate() => _func.Invoke();
-    }
-}
-
-public class Example : StateManager<Example.ExampleStates>
-{
-    public enum ExampleStates
-    {
-
     }
 }

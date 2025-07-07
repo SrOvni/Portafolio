@@ -1,0 +1,16 @@
+{
+    "name": "FiniteStateMachine",
+    "rootNamespace": "FiniteStateMachine",
+    "references": [
+        "GUID:f84951a8db6df4246948a87e8e4bfb6e"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
