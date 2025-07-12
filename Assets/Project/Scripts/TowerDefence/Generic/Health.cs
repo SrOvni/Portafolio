@@ -10,11 +10,11 @@ public class Health : MonoBehaviour
     [SerializeField] private int _initialHealth = 100;
 
     #region propeties
-        public int CurrentHealth 
-        {
-            get => _currentHealth;
-            set => _currentHealth = value;
-        }
+    public int CurrentHealth
+    {
+        get => _currentHealth;
+        set => _currentHealth = value;
+    }
     #endregion
     
     private void OnEnable()
