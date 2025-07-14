@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace RG.Systems.Effects
+namespace RG.Systems
 {
     public class EffectBuilder<TTarget> where TTarget : ICharacter
     {
@@ -25,20 +25,6 @@ namespace RG.Systems.Effects
             return this;
         }
 
-    }
-    public class HealEffect<TTarget> : IAction< TTarget> where TTarget : IHealable
-    {
-        private int healValue;
-
-        public HealEffect(int hv)
-        {
-            healValue = hv;
-        }
-
-        public void Apply(TTarget target)
-        {
-            target.Heal(healValue);
-        }
     }
 
     public class DamagerEffect<TTarget> : IAction<TTarget> where TTarget : IDamagable
