@@ -1,8 +1,8 @@
-using RG.Systems.Effects;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.VisualScripting;
 
-namespace RG.Systems.Potion
+namespace RG.Systems
 {
     public class PotionBuilder<TTarget>
     {
@@ -16,20 +16,23 @@ namespace RG.Systems.Potion
             return this;
         }
 
-        public PotionBuilder<TTarget> SetDescription()
+        public PotionBuilder<TTarget> SetDescription(string description)
         {
-            _description = _description ?? "No description provided";
+            _description = description ?? "No description provided";
             return this;
         }
 
         public PotionBuilder<TTarget> AddEffect(IAction<TTarget> effect)
         {
-            _effects.Add(effect);
+            _effects?.Add(effect);
             return this;
         }
         public PotionBuilder<TTarget> AddEffects(IList<IAction<TTarget>> effects)
         {
-            _effects.AddRange(effects);
+            foreach (var effect in effects)
+            {
+                _effects?.Add(effect);
+            }
             return this;
         }
         public Potion<TTarget> Build()

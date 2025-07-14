@@ -1,10 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using Mono.Cecil.Cil;
-using RG.Systems.Effects;
-using Unity.VisualScripting;
 using UnityEngine;
+using RG.Systems.Effects;
+using System.Collections.Generic;
 
 namespace RG.Systems.Test
 {
@@ -19,14 +15,26 @@ namespace RG.Systems.Test
 
         public Armor Armor => _armor;
 
+        List<Effect<ICharacter>> _effects;
+
+
+        Potion<ICharacter> weirdPotion = new PotionBuilder<ICharacter>()
+            .SetName("Poción de prueba")
+            .SetDescription("Es una poción de prueba")
+            .AddEffect(new InstantHealEffect(100))
+            .AddEffect(new InstantDamagerEffect(100))
+            .Build();
+
         public EnergySystem ResistanceSystem => throw new System.NotImplementedException();
 
         public void Heal(int amount) => Health.Heal(amount);
 
         public void TakeDamage(int amount) => Health.TakeDamage(amount);
 
-        // IReadOnlyList<IAction<ICharacter>> ladyBugPotionEffects = new EffectBuilder<ICharacter>()
-            
-        //     .Build();
-    }
+        public void ApplyWeirdPotion()
+        {
+            weirdPotion.Apply(this);
+        }
+    }    
+
 }

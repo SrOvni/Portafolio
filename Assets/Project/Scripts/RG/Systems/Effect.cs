@@ -1,6 +1,4 @@
-using UnityEngine;
-
-namespace RG.Systems.Effects
+namespace RG.Systems
 {
     public abstract class Effect<TTarget> : IAction<TTarget>
     {
