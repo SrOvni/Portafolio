@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
@@ -18,15 +17,15 @@ public class WeaponAttack : MonoBehaviour
     [SerializeField] private WeaponData.Weapons _weaponType; 
     [SerializeField] private LayerMask _enemyLayer;
      private void Start() {
-        // if(_logger == null)
-        // {
-        //     _logger = GameObject.Find(_loggerName).GetComponent<Logger>();
-        //     if(_logger == null)
-        //     {
-        //         Debug.LogError("No se tiene referencia al Logger en el objecto: " + gameObject.name);
-        //     }
-        //     weapon = _weaponsData.weaponDataList.FirstOrDefault(w => w.WeaponType == _weaponType);
-        // }
+        if(_logger == null)
+        {
+            _logger = GameObject.Find(_loggerName).GetComponent<Logger>();
+            if(_logger == null)
+            {
+                Debug.LogError("No se tiene referencia al Logger en el objecto: " + gameObject.name);
+            }
+            weapon = _weaponsData.weaponDataList.FirstOrDefault(w => w.WeaponType == _weaponType);
+        }
     }
     public void StartFireRoutine() => StartCoroutine(FireRoutine());
     IEnumerator FireRoutine()

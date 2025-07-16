@@ -1,6 +1,5 @@
 using UnityEngine;
 using RG.Systems.Effects;
-using System.Collections.Generic;
 
 namespace RG.Systems.Test
 {
@@ -15,8 +14,9 @@ namespace RG.Systems.Test
 
         public Armor Armor => _armor;
 
-        List<Effect<ICharacter>> _effects;
+        public EnergySystem EnergySystem { get => energySystem;}
 
+        private EnergySystem energySystem;
 
         Potion<ICharacter> weirdPotion = new PotionBuilder<ICharacter>()
             .SetName("Poción de prueba")
@@ -24,8 +24,6 @@ namespace RG.Systems.Test
             .AddEffect(new InstantHealEffect(100))
             .AddEffect(new InstantDamagerEffect(100))
             .Build();
-
-        public EnergySystem ResistanceSystem => throw new System.NotImplementedException();
 
         public void Heal(int amount) => Health.Heal(amount);
 

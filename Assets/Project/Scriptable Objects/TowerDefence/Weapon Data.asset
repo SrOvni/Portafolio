@@ -18,19 +18,16 @@ MonoBehaviour:
     WeaponRange: 10
     Damage: 10
     ShotCoolDown: 1
-    WeaponPrefab: {fileID: 1670008779937064692, guid: b7be61d100be56a47a7cf77933ef1580,
-      type: 3}
+    WeaponPrefab: {fileID: 1670008779937064692, guid: b7be61d100be56a47a7cf77933ef1580, type: 3}
   - WeaponType: 1
     WeaponCost: 150
     WeaponRange: 10
     Damage: 22
     ShotCoolDown: 1.5
-    WeaponPrefab: {fileID: 1633874696744916439, guid: 5fa7dc0cdf564c249acbba6b6a32a863,
-      type: 3}
+    WeaponPrefab: {fileID: 1633874696744916439, guid: 2cf2f1169acee794c9ac289eb48e59bc, type: 3}
   - WeaponType: 2
     WeaponCost: 200
     WeaponRange: 10
     Damage: 10
     ShotCoolDown: 0.5
-    WeaponPrefab: {fileID: 8335514596532939340, guid: a66655188fa5c334cb74076fd8c3e169,
-      type: 3}
+    WeaponPrefab: {fileID: 8335514596532939340, guid: a66655188fa5c334cb74076fd8c3e169, type: 3}

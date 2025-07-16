@@ -5,11 +5,6 @@ namespace RG.Systems
         public Health Health { get; }
         public Armor Armor { get; }
 
-        public EnergySystem ResistanceSystem { get; }
-    }
-
-    public class EnergySystem
-    {
-
+        public EnergySystem EnergySystem { get; }
     }
 }

@@ -1446,7 +1446,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fbdfd0e935e51564c955431050d3e42c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLoggerActive: 0
+  isLoggerActive: 1
 --- !u!1001 &295766038
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2019,7 +2019,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fbdfd0e935e51564c955431050d3e42c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLoggerActive: 0
+  isLoggerActive: 1
 --- !u!4 &353405100 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1142310251201491760, guid: 5252a9341e82b4947ac59fe805498145, type: 3}
@@ -9120,7 +9120,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fbdfd0e935e51564c955431050d3e42c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLoggerActive: 0
+  isLoggerActive: 1
 --- !u!1 &1917790453
 GameObject:
   m_ObjectHideFlags: 0

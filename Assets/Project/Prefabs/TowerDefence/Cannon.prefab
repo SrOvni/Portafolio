@@ -165,7 +165,7 @@ MonoBehaviour:
   _weaponsData: {fileID: 11400000, guid: db8372330c6af6247a1b30a5f7144c6a, type: 2}
   _loggerName: Weapons
   _weaponBarrel: {fileID: 1097801252155642369}
-  _canonBallPrefab: {fileID: 3916893159070465359, guid: c9e8826a16a80de47b269f681ca114c9, type: 3}
+  _canonBallPrefab: {fileID: 3916893159070465359, guid: 2e8d73e3a0a83324283d085dad93f17c, type: 3}
   _canonBallSpawnPoint: {fileID: 1901486053905804072}
   OnWeaponShoot:
     m_PersistentCalls:
