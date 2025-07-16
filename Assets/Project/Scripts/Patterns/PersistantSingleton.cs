@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Generic
+namespace Patterns
 {
     public abstract class PersistantSingleton<T>: Singleton<T> where T : Component{
         public bool AutoUnparentOnAwake = true;
