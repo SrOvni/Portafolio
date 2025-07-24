@@ -1,9 +1,9 @@
 namespace RG.Systems
 {
 
-    public interface IAction<in TTarget>
+    public interface IAction<in T>
     {
-        void Apply(TTarget target);
+        void Apply(T effect);
     }
 
 }
