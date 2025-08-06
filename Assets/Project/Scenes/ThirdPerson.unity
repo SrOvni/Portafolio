@@ -756,7 +756,6 @@ GameObject:
   - component: {fileID: 1295846235}
   - component: {fileID: 1295846238}
   - component: {fileID: 1295846237}
-  - component: {fileID: 1295846236}
   - component: {fileID: 1295846239}
   m_Layer: 0
   m_Name: Player
@@ -782,23 +781,6 @@ Transform:
   - {fileID: 987906467}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1295846236
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1295846234}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5a402d94b7c9545798b2490625f694be, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _stepHeightRatio: 0.063
-  _colliderHeight: 1.75
-  _colliderThickness: 0.73
-  _colliderOffset: {x: 0, y: 0.45, z: 0}
-  _isInDebugMode: 0
 --- !u!136 &1295846237
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -858,10 +840,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1295846234}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 95902e00a2c739b4685ff4a1e6d26aa2, type: 3}
+  m_Script: {fileID: 11500000, guid: 60c8350b44ae417429ea0c6931cecab9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputReader: {fileID: 0}
+  _input: {fileID: 0}
 --- !u!1 &1381684690
 GameObject:
   m_ObjectHideFlags: 0
