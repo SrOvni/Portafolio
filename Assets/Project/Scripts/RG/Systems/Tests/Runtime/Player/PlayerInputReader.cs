@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using RG.Systems.Input;
-using UtilitiesLibrary.Validation.Attributes;
+using UtilitiesLibrary.Validation;
 using static RG.Systems.Player.Test.PlayerInputActions;
 using UnityEngine.Events;
 using System.Collections;
