@@ -2,12 +2,12 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using RG.Systems.Input;
 using UtilitiesLibrary.Validation.Attributes;
-using static RG.Systems.Player.Test.PlayerInputActions;
+using static RG.Systems.Tests.Player.PlayerInputActions;
 using UnityEngine.Events;
 using System.Collections;
 using System;
 
-namespace RG.Systems.Player.Test
+namespace RG.Systems.Tests.Player
 {
     [RequireComponent(typeof(PlayerInput)), CreateAssetMenu(fileName = "Input reader")]
     public class PlayerInputReader : BaseInputReaderScriptableObject, IPlayerActions
@@ -46,7 +46,7 @@ namespace RG.Systems.Player.Test
 
         public void OnInteract(InputAction.CallbackContext context)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public void OnJump(InputAction.CallbackContext context)
@@ -59,7 +59,8 @@ namespace RG.Systems.Player.Test
             var actionPhase = context.phase switch
             {
                 InputActionPhase.Started => true,
-                InputActionPhase.Canceled => false
+                InputActionPhase.Canceled => false,
+                _ => default
             };
             action?.Invoke(actionPhase);
         }

@@ -2,6 +2,11 @@ using System;
 
 namespace RG.Systems.Test
 {
+    public class ObjectiveData
+    {
+        public string Name { get; set; } = "";
+        public int TargetAmount { get; set; }
+    }
     public class DeliverBoxObjetive : IObjective
     {
         public string Name { get; private set; }

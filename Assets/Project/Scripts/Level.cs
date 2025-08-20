@@ -1,9 +1,14 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using RG.Systems.Test;
 using UnityEngine;
 namespace RG.Systems
 {
+    public class LevelSO : ScriptableObject
+    {
+        public List<ObjectiveData> Objectives { get; set; }
+    }
     [Serializable]
     public class Level
     {

@@ -1,9 +1,8 @@
 using UnityEngine;
 using RG.Systems.Input;
 using UtilitiesLibrary.Validation.Attributes;
-using System.Collections.Generic;
 
-namespace RG.Systems.Player.Test
+namespace RG.Systems.Tests.Player
 {
     public class PlayerController : MonoBehaviour
     {
