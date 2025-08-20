@@ -1,11 +1,12 @@
 {
     "name": "RG.Systems.Test.Player",
-    "rootNamespace": "RG.Systems.Test.Player",
+    "rootNamespace": "RG.Systems.Tests.Player",
     "references": [
         "GUID:75469ad4d38634e559750d17036d5f7c",
         "GUID:e1c4dda4733234d4d9d3d5f38e283694",
         "GUID:67af03e05592c46528811c6d489c2f8d",
-        "GUID:5b837e976acd3454c8227f6d42c3d308"
+        "GUID:ce4a00651e84a460f85a136d2a980b6d",
+        "GUID:8c390f57cd8b246c6ab6bbb6bbf4ea03"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

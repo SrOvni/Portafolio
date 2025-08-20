@@ -1,12 +1,11 @@
 using UnityEngine;
 using RG.Systems.Input;
-using UtilitiesLibrary.Validation.Attributes;
 
 namespace RG.Systems.Tests.Player
 {
     public class PlayerController : MonoBehaviour
     {
-        [SerializeField, Header("Input"), Tooltip("A Scriptable Object with the player actions"), Required(LogToConsoleIfNullOrEmpty = true, LogType = LogType.Error)]
+        [SerializeField, Header("Input"), Tooltip("A Scriptable Object with the player actions")]
         private BaseInputReaderScriptableObject _input;
         private PlayerMovement _movement;
         private PlayerCamera _camera;

@@ -1,0 +1,11 @@
+{
+  "name": "TimersPackage",
+  "version": "0.1.0",
+  "displayName": "TimersPackage",
+  "description": "Your Unity package description.",
+  "unity": "2021.3",
+  "author": {
+    "name": "Your Name",
+    "email": "you@example.com"
+  }
+}
