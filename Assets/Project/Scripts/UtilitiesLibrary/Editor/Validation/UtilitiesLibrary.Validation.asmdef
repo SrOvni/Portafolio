@@ -1,0 +1,16 @@
+{
+    "name": "UtilitiesLibrary.Validation",
+    "rootNamespace": "UtilitiesLibrary.Validation",
+    "references": [
+        "GUID:e1c4dda4733234d4d9d3d5f38e283694"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
