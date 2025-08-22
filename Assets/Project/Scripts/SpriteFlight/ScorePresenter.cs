@@ -1,7 +1,6 @@
 using System;
 using System.Runtime.Serialization;
 using Codice.Client.Common;
-using UtilitiesLibrary.ImprovedTimers;
 
 namespace SpriteFlight
 {

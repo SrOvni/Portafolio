@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEditor;
-using UtilitiesLibrary;
 using UtilitiesLibrary.Validation.Attributes;
 using System.Collections.Generic;
 namespace UtilitiesLibrary.Validation.Drawer
@@ -30,7 +29,7 @@ namespace UtilitiesLibrary.Validation.Drawer
                 if (requiredAttribute.LogToConsoleIfNullOrEmpty)
                 {
                     var origin = property.serializedObject.targetObject;
-                    Logger.Log($"{property.name} field in {origin}", requiredAttribute.LogType, origin);
+                    Debug.Log($"{property.name} field in {origin}");
                 }
                 Rect helpBox = new Rect(position.x, position.y + EditorGUIUtility.singleLineHeight + 2, position.width, EditorGUIUtility.singleLineHeight * 1.5f);
 
