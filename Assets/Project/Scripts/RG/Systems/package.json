@@ -1,7 +1,7 @@
 {
   "name": "com.reniergaytan.rgsystems",
-  "version": "0.1.0",
-  "displayName": "RGSystems",
+  "version": "0.1.1",
+  "displayName": "RG.Systems",
   "description": "Variaty of basic systems. (Health, Armor, Energy, Invetory)",
   "unity": "2023.1",
   "author": {
