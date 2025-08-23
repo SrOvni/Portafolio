@@ -48,7 +48,7 @@ namespace RG.Systems
         }
     }
 
-    public interface IArmor : IDamagable, IRepairable
+    public interface IArmor : IDamageable, IRepairable
     {
         public int CurrentArmor { get; }
         public int MaxArmor { get; }

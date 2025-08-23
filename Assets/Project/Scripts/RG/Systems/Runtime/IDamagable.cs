@@ -1,6 +1,6 @@
 namespace RG.Systems
 {
-    public interface IDamagable
+    public interface IDamageable
     {
         void TakeDamage(int amount);
     }

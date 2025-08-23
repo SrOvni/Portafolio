@@ -9,7 +9,7 @@ namespace RG.Systems.Test
         }
 
 
-        public void MakeDamage(IDamagable receiver)
+        public void MakeDamage(IDamageable receiver)
         {
             receiver.TakeDamage(_amount);
         }

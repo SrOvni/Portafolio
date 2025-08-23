@@ -1,6 +1,6 @@
 namespace RG.Systems
 {
-    public interface ICharacter : IHealable, IDamagable
+    public interface ICharacter : IHealable, IDamageable
     {
         public Health Health { get; }
         public Armor Armor { get; }

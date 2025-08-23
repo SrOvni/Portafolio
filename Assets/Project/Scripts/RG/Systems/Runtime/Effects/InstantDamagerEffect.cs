@@ -1,6 +1,6 @@
 namespace RG.Systems.Effects
 {
-        public class InstantDamagerEffect : IAction<IDamagable>
+        public class InstantDamagerEffect : IAction<IDamageable>
     {
         readonly int _damageValue;
 
@@ -8,7 +8,7 @@ namespace RG.Systems.Effects
         {
             _damageValue = damageAmount;
         }
-        public void Apply(IDamagable target)
+        public void Apply(IDamageable target)
         {
             target.TakeDamage(_damageValue);
         }

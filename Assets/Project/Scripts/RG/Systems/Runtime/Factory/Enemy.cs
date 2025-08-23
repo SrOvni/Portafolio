@@ -1,7 +1,7 @@
 using UnityEngine;
 namespace RG.Systems.Test
 {
-    public abstract class Enemy : IDamagable, IHealable
+    public abstract class Enemy : IDamageable, IHealable
     {
 
         public Health Health { get; }
@@ -18,7 +18,7 @@ namespace RG.Systems.Test
         {
             Health.TakeDamage(amount);
         }
-        public virtual void MakeDamage(IDamagable target)
+        public virtual void MakeDamage(IDamageable target)
         {
             var damageType = new MeleeDamage(10);
             var targetToDamage = new DamageAction<MeleeDamage>(target);

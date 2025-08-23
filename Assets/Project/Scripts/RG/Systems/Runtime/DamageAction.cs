@@ -2,8 +2,8 @@ namespace RG.Systems
 {
     public readonly struct DamageAction<TDamage> : IAction<TDamage> where TDamage : struct, IDamage
     {
-        readonly IDamagable _target;
-        public DamageAction(IDamagable targetToDamage)
+        readonly IDamageable _target;
+        public DamageAction(IDamageable targetToDamage)
         {
             _target = targetToDamage;
         }
