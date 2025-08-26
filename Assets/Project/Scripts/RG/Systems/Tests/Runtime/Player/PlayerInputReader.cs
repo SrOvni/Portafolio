@@ -3,7 +3,6 @@ using UnityEngine.InputSystem;
 using RG.Systems.Input;
 using static RG.Systems.Tests.Player.PlayerInputActions;
 using UnityEngine.Events;
-using System.Collections;
 using System;
 
 namespace RG.Systems.Tests.Player

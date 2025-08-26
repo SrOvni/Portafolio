@@ -13,7 +13,7 @@ namespace RG.Systems.Test
 
         public bool IsCompleted { get; private set; }
 
-        int deliveredBoxes;
+        // int deliveredBoxes;
         int target;
 
         public DeliverBoxObjetive(ObjectiveData data)
@@ -30,7 +30,7 @@ namespace RG.Systems.Test
 
         public void Initialize()
         {
-            deliveredBoxes = 0;
+            // deliveredBoxes = 0;
             IsCompleted = false;
         }
     }

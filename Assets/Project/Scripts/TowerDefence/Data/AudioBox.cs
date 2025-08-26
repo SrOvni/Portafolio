@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using UnityEngine;
 [CreateAssetMenu(fileName = "Audio Box", menuName = "Scriptable Objects/Audio box")]
 public class AudioBox : ScriptableObject
@@ -7,7 +8,7 @@ public class AudioBox : ScriptableObject
     [Serializable]
     public struct AudioParameters
     {
-        public string? ClipName;
+        public string ClipName;
         public AudioClip[] AudioClips;
         [Range(0,1)] public float Volume;
         public float Pitch;

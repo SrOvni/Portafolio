@@ -13,8 +13,8 @@ namespace RG.Systems
         public int CurrentEnergy { get => _currentEnergy; }
         public int MaxEnergy { get => _maxEnergy; }
 
-        public event Action<int> OnEnergyConsume;
-        public event Action<int> OnRecoveryConsume;
+        // public event Action<int> OnEnergyConsume;
+        // public event Action<int> OnRecoveryConsume;
 
         //To-do Agregar consume y recovery timers
         // private Timer _consumeTimer = new CountDownTimer();
