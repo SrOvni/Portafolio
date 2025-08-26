@@ -7,7 +7,7 @@ namespace SpriteFlight
         [SerializeField] private float maxSize = 2f;
 
         [SerializeField] private float minSpeed = 50;
-        [SerializeField] private float maxSpeed = 150;
+        // [SerializeField] private float maxSpeed = 150;
         [SerializeField] private float maxSpinSpeed = 10;
 
         Rigidbody2D rb;

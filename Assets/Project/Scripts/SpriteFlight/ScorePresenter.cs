@@ -9,7 +9,7 @@ namespace SpriteFlight
         ScoreModel scoreModel;
         ScoreView scoreView;
         private float timer;
-        private float interval = 1f;
+        // private float interval = 1f;
         TimeSpan _timeSpan;
         FrequencyTimer frequencyTimer;
 
