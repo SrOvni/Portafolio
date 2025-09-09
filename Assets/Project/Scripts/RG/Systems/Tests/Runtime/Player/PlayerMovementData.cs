@@ -1,9 +1,11 @@
+using LitJson;
 using UnityEngine;
+using static RG.Systems.SavingService;
 
 namespace RG.Systems.Tests.Player
 {
-    [CreateAssetMenu(fileName = "Movement Settings", menuName = "RG.Tests/Movemenent Settings")]
-    public class PlayerMovementSettings : ScriptableObject
+    [CreateAssetMenu(fileName = "Movement Data", menuName = "RG.Tests/Movemenent Data")]
+    public class PlayerMovementData : ScriptableObject
     {
         [Header("Walk")]
         public float WalkSpeed = 5;

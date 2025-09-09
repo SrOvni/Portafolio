@@ -1,4 +1,4 @@
-using Patterns;
+using DesignPatterns;
 using UnityEngine;
 
 namespace RG.Systems.Test
