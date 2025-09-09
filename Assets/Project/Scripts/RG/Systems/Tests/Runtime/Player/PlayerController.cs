@@ -1,15 +1,13 @@
-using System;
 using System.Collections.Generic;
-using Codice.Client.BaseCommands.Merge.IncomingChanges;
-using NUnit.Framework;
+using System.Linq;
+using LitJson;
 using Unity.Cinemachine;
 using UnityEngine;
-using UnityEngine.Assertions.Must;
 
 namespace RG.Systems.Tests.Player
 {
     [RequireComponent(typeof(GroundCheck), typeof(Rigidbody))]
-    public class PlayerController : MonoBehaviour, IPlayerControllerContext
+    public class PlayerController : MonoBehaviour, IPlayerControllerContext, ISaveable, IChangeState
     {
         public GameObject player => gameObject;
         [SerializeField] Animator animator;
@@ -34,15 +32,32 @@ namespace RG.Systems.Tests.Player
         Vector3 movement;
         public float CurrentSpeed { get; private set; } = 0;
         float velocity;
-        [SerializeField] PlayerMovementSettings movementSettings;
-        
+        [SerializeField] PlayerMovementData movementSettings;
+
         [Header("Rotation")]
         [SerializeField] float _rotationSpeed;
 
         [Header("Animation")]
         private float currentLocomotionSpeed;
-        public float CurrentLocomotionSpeed { get => currentLocomotionSpeed; set => currentLocomotionSpeed = Mathf.Clamp(value, 0, 1);}
+        public float CurrentLocomotionSpeed { get => currentLocomotionSpeed; set => currentLocomotionSpeed = Mathf.Clamp(value, 0, 1); }
+        #region Saveable
+        public string SaveID => typeof(PlayerController).ToString();
+
+        [SerializeField] PlayerStats stats = new();
+
+        public JsonData SavedData
+        {
+            get
+            {
+                JsonData data = new JsonData();
+                // data[typeof(PlayerStats).ToString()].Add()
+                return data;
+            }
+        }
+
         [SerializeField] float smoothTime = 0.2f;
+
+        #endregion
 
         private void Awake()
         {
@@ -62,23 +77,36 @@ namespace RG.Systems.Tests.Player
             jumpTimer.OnTimeStart += () => jumpVelocity = movementSettings.JumpForce;
             jumpTimer.OnTimeStop += () => jumpCooldownTimer.Start();
 
+            //Stun timer
+            CountdownTimer stunTimer = new(1);
+
             stateMachine = new StateMachine();
 
             //Declare States
             var locomotionState = new LocomotionState(this, animator);
             var jumpState = new JumpState(this, animator);
+            var stunState = new StunState(this, animator);
 
             //Define Transitions
             At(locomotionState, jumpState, new FuncPredicate(() => jumpTimer.IsRunning));
             At(jumpState, locomotionState, new FuncPredicate(() => !jumpTimer.IsRunning && groundCheck.IsGrounded));
+            At(locomotionState, stunState, new FuncPredicate(() => stunTimer.IsRunning));
+            At(jumpState, stunState, new FuncPredicate(() => stunTimer.IsRunning));
+            At(stunState, locomotionState, new FuncPredicate(() => stunTimer.IsFinished));
+
 
             stateMachine.SetInitialState(locomotionState);
+
+            CurrentSpeed = stats.baseData.WalkSpeed;
+
+            var numbers = Enumerable.Range(0, 10).Except(new[] { 2, 8 });
 
         }
 
         void Update()
         {
             movement = new Vector3(input.Direction.x, 0, input.Direction.y);
+            Debug.Log("X: " + input.Direction.x + ", Y: " + input.Direction.y);
             stateMachine.Update();
         }
         void FixedUpdate()
@@ -104,12 +132,13 @@ namespace RG.Systems.Tests.Player
                 rigidbody.linearVelocity = new Vector3(0, rigidbody.linearVelocity.y, 0);
             }
 
-            
+
         }
 
         private void HandleHorizontalMovement(Vector3 direction)
         {
-            Vector3 velocity = direction * CurrentSpeed * Time.fixedDeltaTime;
+            Vector3 velocity = direction * CurrentSpeed * Time.deltaTime;
+            Debug.Log("velocity: " + velocity);
             rigidbody.linearVelocity = new Vector3(velocity.x, rigidbody.linearVelocity.y, velocity.z);
         }
 
@@ -122,6 +151,34 @@ namespace RG.Systems.Tests.Player
         {
             var targetRotation = Quaternion.LookRotation(direction);
             transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, _rotationSpeed * Time.deltaTime);
+        }
+
+        public void LoadFromData(JsonData data)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void ChangeToStunState()
+        {
+            throw new System.NotImplementedException();
+        }
+    }
+
+    interface IChangeState
+    {
+        void ChangeToStunState();
+    }
+
+    public class StunState : BaseState
+    {
+        public StunState(IPlayerControllerContext ctx, Animator anim) : base(ctx, anim)
+        {
+
+        }
+
+        public override void OnEnter()
+        {
+            //Animator
         }
     }
 }

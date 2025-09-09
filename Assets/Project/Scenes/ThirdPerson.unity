@@ -913,6 +913,8 @@ MonoBehaviour:
   _jumpCoolDownDuration: 0
   movementSettings: {fileID: 11400000, guid: 1486e8096d8b140489a7d47ac369b08e, type: 2}
   _rotationSpeed: 100
+  stats:
+    baseData: {fileID: 11400000, guid: 1486e8096d8b140489a7d47ac369b08e, type: 2}
   smoothTime: 0.2
 --- !u!95 &1295846240
 Animator:

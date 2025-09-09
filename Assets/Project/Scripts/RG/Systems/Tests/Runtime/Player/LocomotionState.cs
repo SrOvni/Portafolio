@@ -16,12 +16,12 @@ namespace RG.Systems.Tests.Player
         {
             Debug.Log("LocomotionState");
             // if (animator is null) Debug.Log("Animtor is null");
-            if (animator == null) Debug.Log("Animator is null");
+            // if (animator == null) Debug.Log("Animator is null");
             animator.CrossFade(LocomotionHash, crossFadeDuration);
         }
         public override void FixedUpdate()
         {
-            Debug.Log("Handling movement");
+            // Debug.Log("Handling movement");
             controller.HandleMovement();
         }
     }
