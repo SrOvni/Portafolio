@@ -43,6 +43,7 @@ namespace RG.Systems.Tests.Player
         private float currentLocomotionSpeed;
         public float CurrentLocomotionSpeed { get => currentLocomotionSpeed; set => currentLocomotionSpeed = Mathf.Clamp(value, 0, 1);}
         [SerializeField] float smoothTime = 0.2f;
+        static readonly int Speed = Animator.StringToHash("Speed");
 
         private void Awake()
         {
@@ -80,7 +81,15 @@ namespace RG.Systems.Tests.Player
         {
             movement = new Vector3(input.Direction.x, 0, input.Direction.y);
             stateMachine.Update();
+            UpdateAnimator();
         }
+
+        private void UpdateAnimator()
+        {
+            animator.SetFloat(Speed, CurrentSpeed);
+        }
+
+
         void FixedUpdate()
         {
             stateMachine.FixedUpdate();
@@ -97,14 +106,20 @@ namespace RG.Systems.Tests.Player
                 HandleRotation(adjustedDirection);
                 HandleHorizontalMovement(adjustedDirection);
                 SmoothLocomotionAnimSpeed(adjustedDirection.magnitude);
+                SmoothSpeed(adjustedDirection.magnitude);
             }
             else
             {
-                SmoothLocomotionAnimSpeed(0);
+                SmoothSpeed(0);
                 rigidbody.linearVelocity = new Vector3(0, rigidbody.linearVelocity.y, 0);
             }
 
             
+        }
+
+        void SmoothSpeed(float value)
+        {
+            CurrentSpeed = Mathf.SmoothDamp(CurrentSpeed, value, ref velocity, smoothTime); 
         }
 
         private void HandleHorizontalMovement(Vector3 direction)

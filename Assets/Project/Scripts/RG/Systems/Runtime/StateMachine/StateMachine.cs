@@ -34,8 +34,8 @@ namespace RG.Systems
             var previous = current.State;
             var nextState = nodes[state.GetType()].State;
 
-            previous.OnExit();
-            nextState.OnEnter();
+            previous?.OnExit();
+            nextState?.OnEnter();
             current = nodes[state.GetType()];
         }
         private ITransition GetTransition()
