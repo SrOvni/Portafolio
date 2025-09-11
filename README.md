@@ -19,5 +19,18 @@ A method in the editor window that creates two main subfolders (External and Pro
 ```
 https://github.com/SrOvni/Portafolio.git?path=Assets/Project/Scripts/RG/Systems
 ```
+### Finate State machine
+#### BaseNode
+A base class for states
+#### IContext
+An interface to give context to states
+#### ITransition
+Defines transitions with a state and a condition
+#### IPredicate
+
+####
+
+
+
 
 

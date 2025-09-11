@@ -1,14 +1,15 @@
+using System;
 using UnityEngine;
 namespace RG.Systems
 {
     public abstract class BaseState : IState
     {
-        protected IPlayerControllerContext controller;
+        protected IStateContext _ctx;
         protected Animator animator;
 
-        public BaseState(IPlayerControllerContext ctx, Animator anim)
+        public BaseState(IStateContext ctx, Animator anim)
         {
-            controller = ctx;
+            _ctx = ctx;
             animator = anim;
         }
 

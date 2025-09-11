@@ -7,8 +7,11 @@ namespace RG.Systems.Tests.Player
     {
         readonly int LocomotionHash;
         const float crossFadeDuration = 0.1f;
-        public LocomotionState(IPlayerControllerContext controller, Animator animator) : base(controller, animator)
+
+        IPlayerControllerContext _ctx;
+        public LocomotionState(IPlayerControllerContext context, Animator animator) : base(context, animator)
         {
+            _ctx = context;
             LocomotionHash = Animator.StringToHash("Locomotion");
         }
 
@@ -22,7 +25,15 @@ namespace RG.Systems.Tests.Player
         public override void FixedUpdate()
         {
             // Debug.Log("Handling movement");
-            controller.HandleMovement();
+            _ctx.HandleMovement();
+        }
+    }
+
+    public class ExampleState : BaseState
+    {
+        public ExampleState(IStateContext ctx, Animator anim) : base(ctx, anim)
+        {
+
         }
     }
 }

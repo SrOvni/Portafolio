@@ -1,7 +1,5 @@
 using System;
 using System.Collections.Generic;
-using UnityEditorInternal;
-using UnityEngine;
 namespace RG.Systems
 {
     public class StateMachine

@@ -8,7 +8,7 @@ using UnityEngine;
 namespace RG.Systems.Tests.Player
 {
     [RequireComponent(typeof(GroundCheck), typeof(Rigidbody))]
-    public class PlayerController : MonoBehaviour, IPlayerControllerContext, ISaveable, IChangeState
+    public class PlayerController : MonoBehaviour, IPlayerControllerContext, ISaveable
     {
         public GameObject player => gameObject;
         [SerializeField] Animator animator;
@@ -192,18 +192,5 @@ namespace RG.Systems.Tests.Player
     interface IChangeState
     {
         void ChangeToStunState();
-    }
-
-    public class StunState : BaseState
-    {
-        public StunState(IPlayerControllerContext ctx, Animator anim) : base(ctx, anim)
-        {
-
-        }
-
-        public override void OnEnter()
-        {
-            //Animator
-        }
     }
 }
