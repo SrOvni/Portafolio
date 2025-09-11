@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using LitJson;
@@ -40,6 +41,10 @@ namespace RG.Systems.Tests.Player
         [Header("Animation")]
         private float currentLocomotionSpeed;
         public float CurrentLocomotionSpeed { get => currentLocomotionSpeed; set => currentLocomotionSpeed = Mathf.Clamp(value, 0, 1); }
+        float locomotionAnimationSpeed;
+
+        [Header("Stun state")]
+        CountdownTimer stunTimer = new(1);
         #region Saveable
         public string SaveID => typeof(PlayerController).ToString();
 
@@ -50,13 +55,12 @@ namespace RG.Systems.Tests.Player
             get
             {
                 JsonData data = new JsonData();
-                // data[typeof(PlayerStats).ToString()].Add()
                 return data;
             }
         }
 
-        [SerializeField] float smoothTime = 0.2f;
-        static readonly int Speed = Animator.StringToHash("Speed");
+        [SerializeField] float smoothTime = 0.1f;
+        static readonly int SpeedHashValue = Animator.StringToHash("Speed");
 
         #endregion
 
@@ -79,7 +83,7 @@ namespace RG.Systems.Tests.Player
             jumpTimer.OnTimeStop += () => jumpCooldownTimer.Start();
 
             //Stun timer
-            CountdownTimer stunTimer = new(1);
+
 
             stateMachine = new StateMachine();
 
@@ -90,10 +94,9 @@ namespace RG.Systems.Tests.Player
 
             //Define Transitions
             At(locomotionState, jumpState, new FuncPredicate(() => jumpTimer.IsRunning));
-            At(jumpState, locomotionState, new FuncPredicate(() => !jumpTimer.IsRunning && groundCheck.IsGrounded));
             At(locomotionState, stunState, new FuncPredicate(() => stunTimer.IsRunning));
             At(jumpState, stunState, new FuncPredicate(() => stunTimer.IsRunning));
-            At(stunState, locomotionState, new FuncPredicate(() => stunTimer.IsFinished));
+            Any(locomotionState, new FuncPredicate(() => ReturnToLocomotionState()));
 
 
             stateMachine.SetInitialState(locomotionState);
@@ -102,6 +105,14 @@ namespace RG.Systems.Tests.Player
 
             var numbers = Enumerable.Range(0, 10).Except(new[] { 2, 8 });
 
+        }
+
+        private bool ReturnToLocomotionState()
+        {
+            return groundCheck.IsGrounded
+            && !jumpTimer.IsRunning
+            && !stunTimer.IsRunning
+            ;
         }
 
         void Update()
@@ -114,7 +125,7 @@ namespace RG.Systems.Tests.Player
 
         private void UpdateAnimator()
         {
-            animator.SetFloat(Speed, CurrentSpeed);
+            animator.SetFloat(SpeedHashValue, locomotionAnimationSpeed);//Falta quitar current speed para que sea de un valor de 0 a
         }
 
 
@@ -133,7 +144,6 @@ namespace RG.Systems.Tests.Player
             {
                 HandleRotation(adjustedDirection);
                 HandleHorizontalMovement(adjustedDirection);
-                SmoothLocomotionAnimSpeed(adjustedDirection.magnitude);
                 SmoothSpeed(adjustedDirection.magnitude);
             }
             else
@@ -147,19 +157,19 @@ namespace RG.Systems.Tests.Player
 
         void SmoothSpeed(float value)
         {
-            CurrentSpeed = Mathf.SmoothDamp(CurrentSpeed, value, ref velocity, smoothTime); 
+            Debug.Log("Animation speed: " + locomotionAnimationSpeed);
+            locomotionAnimationSpeed = Mathf.SmoothDamp(locomotionAnimationSpeed, value, ref velocity, smoothTime);
         }
 
         private void HandleHorizontalMovement(Vector3 direction)
         {
-            Vector3 velocity = direction * CurrentSpeed * Time.deltaTime;
-            Debug.Log("velocity: " + velocity);
+            Vector3 velocity = direction * CurrentSpeed * Time.fixedDeltaTime;
             rigidbody.linearVelocity = new Vector3(velocity.x, rigidbody.linearVelocity.y, velocity.z);
         }
 
         private void SmoothLocomotionAnimSpeed(float magnitude)
         {
-            CurrentLocomotionSpeed = Mathf.SmoothDamp(currentLocomotionSpeed, magnitude, ref velocity, smoothTime);
+            CurrentSpeed = Mathf.SmoothDamp(CurrentSpeed, magnitude, ref velocity, smoothTime);
         }
 
         private void HandleRotation(Vector3 direction)
