@@ -1,9 +1,9 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using LitJson;
 using Unity.Cinemachine;
 using UnityEngine;
+using ImprovedTimers;
 
 namespace RG.Systems.Tests.Player
 {
@@ -79,8 +79,8 @@ namespace RG.Systems.Tests.Player
             jumpTimer = new CountdownTimer(_jumpDuration);
             jumpCooldownTimer = new CountdownTimer(_jumpCoolDownDuration);
 
-            jumpTimer.OnTimeStart += () => jumpVelocity = movementSettings.JumpForce;
-            jumpTimer.OnTimeStop += () => jumpCooldownTimer.Start();
+            jumpTimer.OnTimerStart += () => jumpVelocity = movementSettings.JumpForce;
+            jumpTimer.OnTimerStop += () => jumpCooldownTimer.Start();
 
             //Stun timer
 

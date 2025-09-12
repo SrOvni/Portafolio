@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using ImprovedTimers;
 
 namespace RG.Systems.Tests.Player
 {
@@ -10,7 +11,7 @@ namespace RG.Systems.Tests.Player
 
         public float CurrentSpeed { get; private set; }
 
-        public StopWatchTimer timePlayed = new StopWatchTimer();
+        public StopwatchTimer timePlayed = new StopwatchTimer();
 
 
 

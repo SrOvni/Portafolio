@@ -2,8 +2,7 @@
     "name": "RG.Systems",
     "rootNamespace": "RG.Systems",
     "references": [
-        "GUID:75469ad4d38634e559750d17036d5f7c",
-        "GUID:e1c4dda4733234d4d9d3d5f38e283694"
+        "GUID:75469ad4d38634e559750d17036d5f7c"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
