@@ -7,6 +7,8 @@ namespace RG.Systems
         protected IStateContext _ctx;
         protected Animator animator;
 
+        protected const float CROSS_FADE_DURATION = 0.1f;
+
         public BaseState(IStateContext ctx, Animator anim)
         {
             _ctx = ctx;
