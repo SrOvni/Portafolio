@@ -1,6 +1,6 @@
 using System;
 
-namespace RG.Systems.Tests.Player
+namespace RG.Systems
 {
     public class FuncPredicate : IPredicate
     {

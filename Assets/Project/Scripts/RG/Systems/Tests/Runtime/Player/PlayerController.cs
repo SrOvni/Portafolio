@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using LitJson;
-using Unity.Cinemachine;
 using UnityEngine;
 using ImprovedTimers;
 
@@ -20,7 +19,6 @@ namespace RG.Systems.Tests.Player
 
         [Header("Camera")]
         Transform mainCamera;
-        CinemachineCamera _cinemachineCamera;
 
         [Header("Jump Settings")]
         [SerializeField, Min(0)] float _jumpDuration;
