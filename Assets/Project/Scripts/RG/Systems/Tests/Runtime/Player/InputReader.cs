@@ -84,5 +84,10 @@ namespace RG.Systems.Tests.Player
                 Run.Invoke(false);
             }
         }
+
+        public void OnZoom(InputAction.CallbackContext context)
+        {
+            //
+        }
     }
 }
