@@ -8,24 +8,21 @@ namespace RG.Systems.Tests.Player
         readonly int LocomotionHash;
         const float crossFadeDuration = 0.1f;
 
-        IPlayerControllerContext _ctx;
+        readonly IPlayerControllerContext m_ctx;
         public LocomotionState(IPlayerControllerContext context, Animator animator) : base(context, animator)
         {
-            _ctx = context;
+            m_ctx = context;
             LocomotionHash = Animator.StringToHash("Locomotion");
         }
 
         public override void OnEnter()
         {
-            Debug.Log("LocomotionState");
-            // if (animator is null) Debug.Log("Animtor is null");
-            // if (animator == null) Debug.Log("Animator is null");
+            m_ctx.CurrentSpeed = m_ctx.MovementData.WalkSpeed;
             animator.CrossFade(LocomotionHash, crossFadeDuration);
         }
         public override void FixedUpdate()
         {
-            // Debug.Log("Handling movement");
-            _ctx.HandleMovement();
+            m_ctx.HandleMovement();
         }
     }
 

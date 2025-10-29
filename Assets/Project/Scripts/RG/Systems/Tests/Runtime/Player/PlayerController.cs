@@ -3,6 +3,7 @@ using System.Linq;
 using LitJson;
 using UnityEngine;
 using ImprovedTimers;
+using System;
 
 namespace RG.Systems.Tests.Player
 {
@@ -11,7 +12,7 @@ namespace RG.Systems.Tests.Player
     {
         public GameObject player => gameObject;
         [SerializeField] Animator animator;
-        Rigidbody rigidbody;
+        new Rigidbody rigidbody;
         GroundCheck groundCheck;
         [SerializeField] InputReader input;
         StateMachine stateMachine;
@@ -26,12 +27,21 @@ namespace RG.Systems.Tests.Player
         CountdownTimer jumpTimer;
         CountdownTimer jumpCooldownTimer;
         private float jumpVelocity;
+        [Header("Run")]
+        StopwatchTimer RunStopWatch;
+        [Header("Jump")]
+        public bool IsGrounded { get; private set; }
+        private Ray groundRay;
+        [SerializeField] private float sphereRadius;
+        [SerializeField] float maxDistance;
+        [SerializeField] LayerMask groundLayer;
 
         [Header("Movement")]
         Vector3 movement;
-        public float CurrentSpeed { get; private set; } = 0;
+        public float CurrentSpeed { get; set; }
         float velocity;
-        [SerializeField] PlayerMovementData movementSettings;
+        [SerializeField] PlayerMovementData movementData;
+        public PlayerMovementData MovementData => movementData;
 
         [Header("Rotation")]
         [SerializeField] float _rotationSpeed;
@@ -57,7 +67,10 @@ namespace RG.Systems.Tests.Player
             }
         }
 
+
         [SerializeField] float smoothTime = 0.1f;
+        private RunState runState;
+        public RunState RunState { get => runState; set => runState = value; }
         static readonly int SpeedHashValue = Animator.StringToHash("Speed");
 
         #endregion
@@ -77,8 +90,11 @@ namespace RG.Systems.Tests.Player
             jumpTimer = new CountdownTimer(_jumpDuration);
             jumpCooldownTimer = new CountdownTimer(_jumpCoolDownDuration);
 
-            jumpTimer.OnTimerStart += () => jumpVelocity = movementSettings.JumpForce;
+            jumpTimer.OnTimerStart += () => jumpVelocity = movementData.JumpForce;
             jumpTimer.OnTimerStop += () => jumpCooldownTimer.Start();
+
+            //RUnTimer
+            RunStopWatch = new();
 
             //Stun timer
 
@@ -86,14 +102,19 @@ namespace RG.Systems.Tests.Player
             stateMachine = new StateMachine();
 
             //Declare States
+
             var locomotionState = new LocomotionState(this, animator);
             var jumpState = new JumpState(this, animator);
             var stunState = new StunState(this, animator);
+            runState = new RunState(this, animator);
 
             //Define Transitions
             At(locomotionState, jumpState, new FuncPredicate(() => jumpTimer.IsRunning));
             At(locomotionState, stunState, new FuncPredicate(() => stunTimer.IsRunning));
+            At(locomotionState, runState, new FuncPredicate(() => RunStopWatch.IsRunning));
+            At(runState, locomotionState, new FuncPredicate(() => !RunStopWatch.IsRunning));
             At(jumpState, stunState, new FuncPredicate(() => stunTimer.IsRunning));
+
             Any(locomotionState, new FuncPredicate(() => ReturnToLocomotionState()));
 
 
@@ -115,8 +136,9 @@ namespace RG.Systems.Tests.Player
 
         void Update()
         {
+            IsGrounded = Physics.SphereCast(groundRay, sphereRadius, maxDistance, groundLayer);
             movement = new Vector3(input.Direction.x, 0, input.Direction.y);
-            Debug.Log("X: " + input.Direction.x + ", Y: " + input.Direction.y);
+            // Debug.Log("X: " + input.Direction.x + ", Y: " + input.Direction.y);
             stateMachine.Update();
             UpdateAnimator();
         }
@@ -130,6 +152,15 @@ namespace RG.Systems.Tests.Player
         void FixedUpdate()
         {
             stateMachine.FixedUpdate();
+            HandleJump();
+        }
+
+        private void HandleJump()
+        {
+            if(jumpTimer.IsRunning && IsGrounded)
+            {
+                rigidbody.AddForce(transform.up * jumpVelocity, ForceMode.Force);
+            }
         }
 
         void At(IState from, IState to, IPredicate condition) => stateMachine.AddTransition(from, to, condition);
@@ -155,21 +186,15 @@ namespace RG.Systems.Tests.Player
 
         void SmoothSpeed(float value)
         {
-            Debug.Log("Animation speed: " + locomotionAnimationSpeed);
+            // Debug.Log("Animation speed: " + locomotionAnimationSpeed);
             locomotionAnimationSpeed = Mathf.SmoothDamp(locomotionAnimationSpeed, value, ref velocity, smoothTime);
         }
 
         private void HandleHorizontalMovement(Vector3 direction)
         {
             Vector3 velocity = direction * CurrentSpeed * Time.fixedDeltaTime;
-            rigidbody.linearVelocity = new Vector3(velocity.x, rigidbody.linearVelocity.y, velocity.z);
+            rigidbody.linearVelocity = new Vector3(velocity.x * locomotionAnimationSpeed, rigidbody.linearVelocity.y, velocity.z * locomotionAnimationSpeed);
         }
-
-        private void SmoothLocomotionAnimSpeed(float magnitude)
-        {
-            CurrentSpeed = Mathf.SmoothDamp(CurrentSpeed, magnitude, ref velocity, smoothTime);
-        }
-
         private void HandleRotation(Vector3 direction)
         {
             var targetRotation = Quaternion.LookRotation(direction);
@@ -184,6 +209,24 @@ namespace RG.Systems.Tests.Player
         public void ChangeToStunState()
         {
             throw new System.NotImplementedException();
+        }
+        private void OnEnable()
+        {
+            input.Run += OnRun;
+        }
+
+        private void OnRun(bool running)
+        {
+            if (running)
+            {
+                Debug.Log("Sprint pressed");
+                RunStopWatch.Start();
+            }
+            else if (!running)
+            {
+                Debug.Log("Sprint canceled");
+                RunStopWatch.Stop();
+            }
         }
     }
 

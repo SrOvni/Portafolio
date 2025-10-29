@@ -1,18 +1,20 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 namespace RG.Systems
 {
-    public abstract class ItemBase : ScriptableObject
+    [CreateAssetMenu(fileName = "New Item", menuName = "Inventory/Item")]
+    public abstract class Item : ScriptableObject
     {
         public string ItemName;
         public Sprite Icon;
         public bool IsStackable;
         public int MaxStackSize = 1;
     }
-    public class InventorySlot
+    public class InvetoryContainer : MonoBehaviour
     {
-        public ItemBase Item { get; private set; }
-        public int Quantity { get; private set; }
-        public bool IsEmpty => Item == null;
+        [SerializeField] private int capacity = 5;
+        public List<InventorySlot> slots = new();
+        // private delegate 
     }
 }

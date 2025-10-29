@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using static RG.Systems.Tests.Player.PlayerInputActions;
+using static RG.Systems.Tests.Player.PlayerInputActionsTest;
 namespace RG.Systems.Tests.Player
 {
     [CreateAssetMenu(fileName = "Input Reader", menuName = "RG.Tests/Input Reader")]
@@ -14,13 +14,13 @@ namespace RG.Systems.Tests.Player
         public event Action<Vector2, bool> Look = delegate { };
         public event Action<Vector2> Move = delegate { };
         public Vector2 Direction => _inputActions.Player.Move.ReadValue<Vector2>();
-        PlayerInputActions _inputActions;
+        PlayerInputActionsTest _inputActions;
 
         public void EnablePlayerInputActions()
         {
             if (_inputActions == null)
             {
-                _inputActions = new PlayerInputActions();
+                _inputActions = new PlayerInputActionsTest();
                 _inputActions.Player.SetCallbacks(this);
             }
             _inputActions.Enable();
@@ -76,7 +76,13 @@ namespace RG.Systems.Tests.Player
 
         public void OnSprint(InputAction.CallbackContext context)
         {
-            //
+            if(context.phase == InputActionPhase.Started)
+            {
+                Run.Invoke(true);
+            }else if(context.phase == InputActionPhase.Canceled)
+            {
+                Run.Invoke(false);
+            }
         }
     }
 }

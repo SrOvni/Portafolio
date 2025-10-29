@@ -4,7 +4,7 @@ namespace RG.Systems
 {
     public abstract class BaseState : IState
     {
-        protected IStateContext _ctx;
+         protected IStateContext _ctx;
         protected Animator animator;
 
         protected const float CROSS_FADE_DURATION = 0.1f;
