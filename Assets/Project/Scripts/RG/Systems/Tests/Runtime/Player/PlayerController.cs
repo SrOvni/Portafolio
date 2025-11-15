@@ -37,7 +37,7 @@ namespace RG.Systems.Tests.Player
         [SerializeField] LayerMask groundLayer;
 
         [Header("Movement")]
-        Vector3 movement;
+        Vector3 movementDirection;
         public float CurrentSpeed { get; set; }
         float velocity;
         [SerializeField] PlayerMovementData movementData;
@@ -111,8 +111,8 @@ namespace RG.Systems.Tests.Player
             //Define Transitions
             At(locomotionState, jumpState, new FuncPredicate(() => jumpTimer.IsRunning));
             At(locomotionState, stunState, new FuncPredicate(() => stunTimer.IsRunning));
-            At(locomotionState, runState, new FuncPredicate(() => RunStopWatch.IsRunning));
-            At(runState, locomotionState, new FuncPredicate(() => !RunStopWatch.IsRunning));
+            At(locomotionState, runState, new FuncPredicate(() => RunStopWatch.IsRunning && movementDirection.magnitude > 0));
+            At(runState, locomotionState, new FuncPredicate(() => !RunStopWatch.IsRunning && movementDirection == Vector3.zero));
             At(jumpState, stunState, new FuncPredicate(() => stunTimer.IsRunning));
 
             Any(locomotionState, new FuncPredicate(() => ReturnToLocomotionState()));
@@ -137,7 +137,7 @@ namespace RG.Systems.Tests.Player
         void Update()
         {
             IsGrounded = Physics.SphereCast(groundRay, sphereRadius, maxDistance, groundLayer);
-            movement = new Vector3(input.Direction.x, 0, input.Direction.y);
+            movementDirection = new Vector3(input.Direction.x, 0, input.Direction.y);
             // Debug.Log("X: " + input.Direction.x + ", Y: " + input.Direction.y);
             stateMachine.Update();
             UpdateAnimator();
@@ -157,7 +157,7 @@ namespace RG.Systems.Tests.Player
 
         private void HandleJump()
         {
-            if(jumpTimer.IsRunning && IsGrounded)
+            if (jumpTimer.IsRunning && IsGrounded)
             {
                 rigidbody.AddForce(transform.up * jumpVelocity, ForceMode.Force);
             }
@@ -168,7 +168,7 @@ namespace RG.Systems.Tests.Player
 
         public void HandleMovement()
         {
-            var adjustedDirection = Quaternion.AngleAxis(mainCamera.eulerAngles.y, Vector3.up) * movement;
+            var adjustedDirection = Quaternion.AngleAxis(mainCamera.eulerAngles.y, Vector3.up) * movementDirection;
             if (adjustedDirection.magnitude > 0f)
             {
                 HandleRotation(adjustedDirection);
@@ -227,6 +227,11 @@ namespace RG.Systems.Tests.Player
                 Debug.Log("Sprint canceled");
                 RunStopWatch.Stop();
             }
+        }
+        void OnDrawGizmos()
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawSphere(transform.position, sphereRadius);
         }
     }
 

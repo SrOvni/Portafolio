@@ -1,6 +1,6 @@
 {
   "name": "com.reniergaytan.rgsystems",
-  "version": "0.1.2",
+  "version": "0.1.2.1",
   "displayName": "RG.Systems",
   "description": "Variaty of basic systems. (Health, Armor, Energy, Invetory, State Machine)",
   "dependencies": {
