@@ -1,12 +1,12 @@
 {
   "name": "com.reniergaytan.rgsystems",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "displayName": "RG.Systems",
-  "description": "Variaty of basic systems. (Health, Armor, Energy, Invetory, State Machine)",
+  "description": "Variaty of basic systems. (Health, Armor, Energy, Invetory, Finite State Machine)",
+"unity": "6000.0",
   "dependencies": {
     "com.gitamend.improvedtimers": "https://github.com/adammyhre/Unity-Improved-Timers.git"
   },
-  "unity": "2023.1",
   "author": {
     "name": "Renier Gaytan",
     "email": "renier.gaytan@gmail.com"

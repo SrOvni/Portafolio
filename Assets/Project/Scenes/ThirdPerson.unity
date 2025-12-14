@@ -213,7 +213,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &44659410
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -796,8 +796,6 @@ MonoBehaviour:
       Input:
         InputAction: {fileID: -5630151704836100654, guid: 052faaac586de48259a63d0c4782560b, type: 3}
         Gain: 100
-        LegacyInput: 
-        LegacyGain: 1
         CancelDeltaTime: 0
       InputValue: 0
       Driver:
@@ -809,8 +807,6 @@ MonoBehaviour:
       Input:
         InputAction: {fileID: -5630151704836100654, guid: 052faaac586de48259a63d0c4782560b, type: 3}
         Gain: -1
-        LegacyInput: 
-        LegacyGain: 1
         CancelDeltaTime: 0
       InputValue: 0
       Driver:
@@ -822,8 +818,6 @@ MonoBehaviour:
       Input:
         InputAction: {fileID: -6735471289810397582, guid: 882ea7cb91d12b44693048e7e1e68ac2, type: 3}
         Gain: -1
-        LegacyInput: 
-        LegacyGain: 1
         CancelDeltaTime: 0
       InputValue: 0
       Driver:
@@ -1536,7 +1530,7 @@ MonoBehaviour:
   maxDistance: 0
   groundLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1024
   movementData: {fileID: 11400000, guid: 1486e8096d8b140489a7d47ac369b08e, type: 2}
   _rotationSpeed: 600
   stats:

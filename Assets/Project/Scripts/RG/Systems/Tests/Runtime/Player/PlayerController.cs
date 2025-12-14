@@ -12,8 +12,9 @@ namespace RG.Systems.Tests.Player
     {
         public GameObject player => gameObject;
         [SerializeField] Animator animator;
-        new Rigidbody rigidbody;
+        Rigidbody rb;
         GroundCheck groundCheck;
+
         [SerializeField] InputReader input;
         StateMachine stateMachine;
         List<Timer> timers;
@@ -77,7 +78,7 @@ namespace RG.Systems.Tests.Player
 
         private void Awake()
         {
-            rigidbody = GetComponent<Rigidbody>();
+            rb = GetComponent<Rigidbody>();
             groundCheck = GetComponent<GroundCheck>();
             animator = GetComponent<Animator>();
             if (animator == null) Debug.Log("Animator is null");
@@ -85,7 +86,7 @@ namespace RG.Systems.Tests.Player
 
             mainCamera = Camera.main.transform;
 
-            rigidbody.freezeRotation = true;
+            rb.freezeRotation = true;
 
             jumpTimer = new CountdownTimer(_jumpDuration);
             jumpCooldownTimer = new CountdownTimer(_jumpCoolDownDuration);
@@ -159,7 +160,7 @@ namespace RG.Systems.Tests.Player
         {
             if (jumpTimer.IsRunning && IsGrounded)
             {
-                rigidbody.AddForce(transform.up * jumpVelocity, ForceMode.Force);
+                rb.AddForce(transform.up * jumpVelocity, ForceMode.Force);
             }
         }
 
@@ -178,7 +179,7 @@ namespace RG.Systems.Tests.Player
             else
             {
                 SmoothSpeed(0);
-                rigidbody.linearVelocity = new Vector3(0, rigidbody.linearVelocity.y, 0);
+                rb.linearVelocity = new Vector3(0, rb.linearVelocity.y, 0);
             }
 
 
@@ -193,7 +194,7 @@ namespace RG.Systems.Tests.Player
         private void HandleHorizontalMovement(Vector3 direction)
         {
             Vector3 velocity = direction * CurrentSpeed * Time.fixedDeltaTime;
-            rigidbody.linearVelocity = new Vector3(velocity.x * locomotionAnimationSpeed, rigidbody.linearVelocity.y, velocity.z * locomotionAnimationSpeed);
+            rb.linearVelocity = new Vector3(velocity.x * locomotionAnimationSpeed, rb.linearVelocity.y, velocity.z * locomotionAnimationSpeed);
         }
         private void HandleRotation(Vector3 direction)
         {
