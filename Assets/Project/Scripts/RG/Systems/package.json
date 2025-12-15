@@ -5,7 +5,7 @@
   "description": "Variaty of basic systems. (Health, Armor, Energy, Invetory, Finite State Machine)",
 "unity": "6000.0",
   "dependencies": {
-    "com.gitamend.improvedtimers": "https://github.com/SrOvni/Unity-Improved-Timers.git"
+    "com.reniergaytan.improvedtimers": "https://github.com/SrOvni/Unity-Improved-Timers.git"
   },
   "author": {
     "name": "Renier Gaytan",
