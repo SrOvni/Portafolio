@@ -9,7 +9,7 @@ namespace RG.Systems
     {
         [SerializeField] private int _currentHealth;
         public int CurrentHealth => _currentHealth;
-        [SerializeField] public int MaxHealth => _maxHealth;
+        public int MaxHealth => _maxHealth;
         [SerializeField] private int _maxHealth;
         public event Action<int> OnTakeDamage = delegate { };
         public event Action OnZeroHealth = delegate { };
