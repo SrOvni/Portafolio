@@ -1,0 +1,121 @@
+classDiagram
+
+%% =====================
+%% CORE RHYTHM SYSTEM
+%% =====================
+class BeatManager {
+    +float BPM
+    +float BeatInterval
+    +event OnBeat
+    +event OnOffBeat
+    +bool IsOnBeat(float inputTime)
+}
+
+class BeatWindow {
+    +float perfectWindow
+    +float goodWindow
+}
+
+BeatManager --> BeatWindow
+
+%% =====================
+%% PLAYER
+%% =====================
+class PlayerController {
+    <<StatecContext>>
+    -CharatcerLocomotion charatcerLocomotion
+    -CombatController combatController
+    -Animator animator
+    -PlayerInput 
+}
+class StateContext {
+    <<MonoBehaviour, IStateContext>>
+}
+
+PlayerController --> PlayerController
+PlayerController --> CombatController
+
+%% =====================
+%% MOVEMENT
+%% =====================
+class PlayerController {
+    +Move(Vector2 input)
+}
+
+%% =====================
+%% COMBAT CORE
+%% =====================
+class CombatController {
+    -BeatInputBuffer inputBuffer
+    -ComboSystem comboSystem
+    -AttackHandler attackHandler
+    +HandleInput(InputType)
+}
+
+CombatController --> BeatInputBuffer
+CombatController --> ComboSystem
+CombatController --> AttackHandler
+CombatController --> BeatManager
+
+%% =====================
+%% INPUT BUFFER
+%% =====================
+class BeatInputBuffer {
+    +RegisterInput(InputType)
+    +bool ConsumeOnBeat()
+}
+
+%% =====================
+%% COMBOS
+%% =====================
+class ComboSystem {
+    -ComboData currentCombo
+    -int currentIndex
+    +GetNextAttack() AttackData
+    +ResetCombo()
+}
+
+ComboSystem --> ComboData
+
+class ComboData {
+    +List~AttackData~ attacks
+}
+
+%% =====================
+%% ATTACK EXECUTION
+%% =====================
+class AttackHandler {
+    +ExecuteAttack(AttackData)
+}
+
+AttackHandler --> AttackData
+AttackHandler --> Animator
+AttackHandler --> BeatManager
+
+class AttackData {
+    +string animationName
+    +float damage
+    +float staminaCost
+    +bool requiresBeat
+}
+
+%% =====================
+%% ENEMY
+%% =====================
+class Enemy {
+    -EnemyBeatListener beatListener
+    -EnemyCombatController combatController
+}
+
+Enemy --> EnemyBeatListener
+Enemy --> EnemyCombatController
+
+class EnemyBeatListener {
+    +OnBeat()
+}
+
+EnemyBeatListener --> BeatManager
+
+class EnemyCombatController {
+    +AttackOnBeat()
+}

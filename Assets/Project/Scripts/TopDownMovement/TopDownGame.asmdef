@@ -1,0 +1,18 @@
+{
+    "name": "TopDownGame",
+    "rootNamespace": "TopDownGame",
+    "references": [
+        "GUID:91d419664d8c89c4b8871250445a9bf5",
+        "GUID:67af03e05592c46528811c6d489c2f8d",
+        "GUID:75469ad4d38634e559750d17036d5f7c"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
