@@ -73,3 +73,4 @@ crashlytics-build.properties
 
 #MacOs Related
 .DS_Store
+*.orig 
