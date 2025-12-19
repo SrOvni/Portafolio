@@ -9,8 +9,5 @@ A contract for transition logic
 ### IPredicate
 A contract to evaluate conditions
 
-## Test
-### Player Controller
-### Locomotion State
-### Movement data
+## HSM
 
