@@ -1,7 +1,9 @@
 {
     "name": "RG.Systems.HSM",
     "rootNamespace": "RG.Systems.HSM",
-    "references": [],
+    "references": [
+        "GUID:67af03e05592c46528811c6d489c2f8d"
+    ],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
