@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace RG.Systems.HSM
 {
+    [RequireComponent(typeof(CharacterController))]
     public class PlayerStateDrive : MonoBehaviour
     {
         public PlayerContext _ctx = new();
